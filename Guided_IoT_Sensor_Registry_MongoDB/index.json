@@ -1,0 +1,54 @@
+{
+  "title": "Building an IoT Sensor Registry with MongoDB",
+  "description": "Hands-on introduction to MongoDB: create a database, insert documents with nested structures, query with operators, update, run an aggregation pipeline, and delete \u2014 using a realistic IoT sensor registry scenario.",
+  "details": {
+    "steps": [
+      {
+        "title": "Starting the MongoDB container",
+        "text": "step1.md"
+      },
+      {
+        "title": "Inserting the first sensor document",
+        "text": "step2.md"
+      },
+      {
+        "title": "Populating the sensor fleet",
+        "text": "step3.md"
+      },
+      {
+        "title": "Querying the collection",
+        "text": "step4.md"
+      },
+      {
+        "title": "Updating documents",
+        "text": "step5.md"
+      },
+      {
+        "title": "Aggregation pipeline",
+        "text": "step6.md"
+      },
+      {
+        "title": "Deleting documents and final check",
+        "text": "step7.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "setup.sh",
+          "target": "/root/",
+          "chmod": "+x"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
