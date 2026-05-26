@@ -1,6 +1,6 @@
 # Step 6 — Aggregation pipeline
 
-The file `/root/aggregate.js` contains a three-stage pipeline:
+The file `/root/aggregate.js` contains a three-stage pipeline that counts active sensors by type and computes the average battery level:
 
 ```javascript
 const result = db.sensors.aggregate([
@@ -13,13 +13,13 @@ printjson(result)
 
 Copy the file into the container:
 
-```bash
+```
 docker cp /root/aggregate.js mongo:/tmp/aggregate.js
 ```
 
 Execute the pipeline:
 
-```bash
+```
 docker exec mongo mongosh sensor_registry /tmp/aggregate.js
 ```
 

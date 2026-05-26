@@ -1,6 +1,6 @@
 {
   "title": "Building an IoT Sensor Registry with MongoDB",
-  "description": "Hands-on introduction to MongoDB: create a database, insert documents with nested structures, query with operators, update, run an aggregation pipeline, and delete \u2014 using a realistic IoT sensor registry scenario.",
+  "description": "Hands-on introduction to MongoDB: insert documents with nested structures, query with operators, update, aggregate, and delete \u2014 using a realistic IoT sensor registry scenario.",
   "details": {
     "steps": [
       {

@@ -1,6 +1,6 @@
 # Step 2 — Inserting the first sensor document
 
-The file `/root/insert_one.js` was prepared during setup. It inserts a document with a nested `location` object, a nested `specs` object, and a `tags` array:
+The file `/root/insert_one.js` was created during setup. It inserts a document with a nested `location` object, a nested `specs` object, and a `tags` array:
 
 ```javascript
 printjson(db.sensors.insertOne({
@@ -16,19 +16,19 @@ printjson(db.sensors.insertOne({
 
 Copy the file into the container:
 
-```bash
+```
 docker cp /root/insert_one.js mongo:/tmp/insert_one.js
 ```
 
 Execute the script:
 
-```bash
+```
 docker exec mongo mongosh sensor_registry /tmp/insert_one.js
 ```
 
 The output shows `acknowledged: true` and the auto-generated `_id`. Retrieve the document to verify the nested structure:
 
-```bash
+```
 docker exec mongo mongosh sensor_registry --eval 'db.sensors.findOne({ device_id: "SNS-001" })'
 ```
 
