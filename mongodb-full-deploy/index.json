@@ -1,0 +1,22 @@
+{
+  "title": "Deployment of MongoDB with Kubernetes from scratch",
+  "description": "Kubernetes from zero to hero: learn how to deploy MongoDB on a simple one-node cluster from scratch using kubeadm",
+  "time": "90",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    },
+    "steps": [
+      { "title": "Step 1 - Install a Kubernetes cluster", "text": "step1.md" },
+      { "title": "Step 2 - Create a MongoDB pod", "text": "step2.md" },
+      { "title": "Step 3 - Expose the MongoDB service", "text": "step3.md" },
+      { "title": "Step 4 - Interact with your MongoDB server", "text": "step4.md" },
+      { "title": "Step 5 - Create and query a database via Mongo Express", "text": "step5.md" }
+    ],
+    "finish": { "text": "finish.md" }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
