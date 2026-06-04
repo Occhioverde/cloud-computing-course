@@ -1,4 +1,4 @@
-# L21 — Exercise B: Apache Spark with Docker
+# Apache Spark with Docker
 
 **Cloud Computing and Distributed Systems**
 Università degli Studi di Verona — A.A. 2025/2026

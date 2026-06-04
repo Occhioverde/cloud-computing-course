@@ -1,5 +1,5 @@
 {
-  "title": "L21 — Exercise B: Apache Spark with Docker (autonomous)",
+  "title": "Apache Spark with Docker (autonomous)",
   "description": "Deploy a Spark cluster and write PySpark analysis pipelines independently.",
   "difficulty": "Intermediate",
   "time": "60",
