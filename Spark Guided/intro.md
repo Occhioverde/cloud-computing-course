@@ -1,0 +1,33 @@
+# L21 — Exercise A: Apache Spark with Docker
+
+**Cloud Computing and Distributed Systems**
+Università degli Studi di Verona — A.A. 2025/2026
+
+---
+
+## What you will do
+
+In this exercise you will deploy a Spark standalone cluster using Docker Compose,
+submit PySpark jobs that analyse a sales dataset, and explore the Spark Web UI
+to observe how jobs are executed across the cluster.
+
+## The scenario
+
+You are a data engineer at a retail company. You have a CSV file of sales orders
+from 2023 and 2024 and a product catalog with supplier and margin information.
+Your tasks: compute revenue aggregations, filter and transform the data,
+join the two datasets, use the cache API, and rewrite a query using Spark SQL.
+
+## What is already prepared
+
+The setup script has:
+- installed Docker Compose
+- created the working directory `/root/spark-lab` with all files
+- pulled the Spark image and started the cluster
+- copied the data files into the master container at `/data/`
+
+**The setup takes about 90 seconds. Wait for the terminal prompt before clicking Start.**
+
+---
+
+Click **START** to begin.

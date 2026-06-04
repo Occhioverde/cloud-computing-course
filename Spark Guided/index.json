@@ -1,0 +1,35 @@
+{
+  "title": "Apache Spark with Docker (guided)",
+  "description": "Deploy a Spark standalone cluster with Docker Compose, submit PySpark jobs, and explore the Spark Web UI.",
+  "difficulty": "Intermediate",
+  "time": "60",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    },
+    "steps": [
+      { "title": "Step 1 — Inspect the cluster", "text": "step1.md" },
+      { "title": "Step 2 — Explore the Spark Web UI", "text": "step2.md" },
+      { "title": "Step 3 — Inspect the dataset and the script", "text": "step3.md" },
+      { "title": "Step 4 — Submit your first PySpark job", "text": "step4.md" },
+      { "title": "Step 5 — Analyse the results", "text": "step5.md" },
+      { "title": "Step 6 — Filter and transform", "text": "step6.md" },
+      { "title": "Step 7 — Join two DataFrames", "text": "step7.md" },
+      { "title": "Step 8 — Cache and reuse", "text": "step8.md" },
+      { "title": "Step 9 — Spark SQL", "text": "step9.md" },
+      { "title": "Step 10 — Observe the final state in the Web UI", "text": "step10.md" }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        { "file": "setup.sh", "target": "/root/", "chmod": "+x" }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
