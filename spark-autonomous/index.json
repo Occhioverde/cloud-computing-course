@@ -1,0 +1,31 @@
+{
+  "title": "L21 — Exercise B: Apache Spark with Docker (autonomous)",
+  "description": "Deploy a Spark cluster and write PySpark analysis pipelines independently.",
+  "difficulty": "Intermediate",
+  "time": "60",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    },
+    "steps": [
+      { "title": "Task 1 — Start the cluster and verify it", "text": "step1.md" },
+      { "title": "Task 2 — Submit the baseline job", "text": "step2.md" },
+      { "title": "Task 3 — Filter and transform", "text": "step3.md" },
+      { "title": "Task 4 — Join two DataFrames", "text": "step4.md" },
+      { "title": "Task 5 — Cache and reuse", "text": "step5.md" },
+      { "title": "Task 6 — Spark SQL", "text": "step6.md" }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        { "file": "setup.sh", "target": "/root/", "chmod": "+x" }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
