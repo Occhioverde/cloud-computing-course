@@ -2,10 +2,8 @@
 
 ## Pull the Spark image
 
-The image needs to be downloaded before the cluster can start. This takes 1–2 minutes.
-
 ```
-docker pull bitnami/spark:3.5
+docker pull spark:python3
 ```{{exec}}
 
 ---
@@ -21,7 +19,7 @@ cd /root/spark-lab && docker-compose up -d
 ## Wait for the master to be ready
 
 ```
-until docker logs spark-master 2>&1 | grep -q "Master: Starting Spark master"; do sleep 3; done && echo "Master ready"
+until docker logs spark-master 2>&1 | grep -q "MasterWebUI: Bound to"; do sleep 3; done && echo "Master ready"
 ```{{exec}}
 
 ---

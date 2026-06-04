@@ -9,29 +9,22 @@ cat > /root/spark-lab/docker-compose.yml << 'COMPOSEEOF'
 version: "3.8"
 services:
   spark-master:
-    image: bitnami/spark:3.5
+    image: spark:python3
     container_name: spark-master
+    command: /opt/spark/sbin/start-master.sh
     environment:
-      - SPARK_MODE=master
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+      - SPARK_NO_DAEMONIZE=true
     ports:
       - "8080:8080"
       - "7077:7077"
   spark-worker:
-    image: bitnami/spark:3.5
+    image: spark:python3
     container_name: spark-worker
+    command: /opt/spark/sbin/start-worker.sh spark://spark-master:7077
     environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=1G
+      - SPARK_NO_DAEMONIZE=true
+      - SPARK_WORKER_MEMORY=1g
       - SPARK_WORKER_CORES=1
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
     depends_on:
       - spark-master
 COMPOSEEOF
