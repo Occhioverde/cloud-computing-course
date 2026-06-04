@@ -32,7 +32,7 @@ ENDOFSCRIPT
 ## Submit the new script
 
 ```
-docker exec spark-master spark-submit --master spark://spark-master:7077 /data/analysis2.py
+docker exec spark-master /opt/spark/bin/spark-submit --master spark://spark-master:7077 /data/analysis2.py
 ```{{exec}}
 
 ---

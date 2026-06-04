@@ -38,7 +38,7 @@ ENDOFSCRIPT
 ## Submit
 
 ```
-docker exec spark-master spark-submit --master spark://spark-master:7077 /data/filter_transform.py
+docker exec spark-master /opt/spark/bin/spark-submit --master spark://spark-master:7077 /data/filter_transform.py
 ```{{exec}}
 
 ---

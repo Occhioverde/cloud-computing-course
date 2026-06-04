@@ -37,7 +37,7 @@ ENDOFSCRIPT
 ## Submit
 
 ```
-docker exec spark-master spark-submit --master spark://spark-master:7077 /data/spark_sql.py
+docker exec spark-master /opt/spark/bin/spark-submit --master spark://spark-master:7077 /data/spark_sql.py
 ```{{exec}}
 
 ---

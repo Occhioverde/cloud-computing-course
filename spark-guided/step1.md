@@ -16,22 +16,6 @@ cd /root/spark-lab && docker-compose up -d
 
 ---
 
-## Wait for the master to be ready
-
-```
-until docker logs spark-master 2>&1 | grep -q "Started MasterWebUI"; do sleep 3; done && echo "Master ready"
-```{{exec}}
-
----
-
-## Wait for the worker to register
-
-```
-until docker logs spark-worker 2>&1 | grep -q "Successfully registered with master"; do sleep 3; done && echo "Worker registered"
-```{{exec}}
-
----
-
 ## Verify both containers are running
 
 ```

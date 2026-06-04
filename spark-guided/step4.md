@@ -3,7 +3,7 @@
 ## Submit the job with spark-submit
 
 ```
-docker exec spark-master spark-submit --master spark://spark-master:7077 /data/analysis.py
+docker exec spark-master /opt/spark/bin/spark-submit --master spark://spark-master:7077 /data/analysis.py
 ```{{exec}}
 
 The job takes about 30–60 seconds. While it runs:
