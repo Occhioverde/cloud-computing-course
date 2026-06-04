@@ -64,7 +64,7 @@ order_id,product,category,region,quantity,unit_price,year
 1020,Webcam,Electronics,North,9,89.99,2024
 CSVEOF
 
-# Create product catalog for the join exercise
+# Create product catalog
 cat > /root/spark-lab/catalog.csv << 'CATEOF'
 product,supplier,margin_pct
 Laptop,TechSupply Inc,22
@@ -119,16 +119,23 @@ df.groupBy("region") \
 spark.stop()
 PYEOF
 
-# Pull the image and start the cluster
+# Pull image first (blocking)
 docker pull bitnami/spark:3.5 > /dev/null 2>&1
+
+# Start the cluster (non-blocking by design — docker-compose returns immediately)
 cd /root/spark-lab
-docker-compose up -d > /dev/null 2>&1
+docker-compose up -d
 
-# Wait until both containers are running
-until docker ps | grep -q "spark-master"; do sleep 2; done
-until docker ps | grep -q "spark-worker"; do sleep 2; done
+# Wait until spark-master container is running
+until docker ps | grep -q "spark-master"; do sleep 3; done
 
-# Copy data into the master container
+# Wait until Spark master process is actually ready (check logs for startup message)
+until docker logs spark-master 2>&1 | grep -q "Master: Starting Spark master"; do sleep 3; done
+
+# Wait until worker has registered
+until docker logs spark-worker 2>&1 | grep -q "Successfully registered with master"; do sleep 3; done
+
+# Copy data files into the container
 docker exec spark-master mkdir -p /data
 docker cp /root/spark-lab/sales.csv spark-master:/data/sales.csv
 docker cp /root/spark-lab/catalog.csv spark-master:/data/catalog.csv

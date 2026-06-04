@@ -1,5 +1,5 @@
 {
-  "title": "Apache Spark with Docker (guided)",
+  "title": "L21 — Exercise A: Apache Spark with Docker (guided)",
   "description": "Deploy a Spark standalone cluster with Docker Compose, submit PySpark jobs, and explore the Spark Web UI.",
   "difficulty": "Intermediate",
   "time": "60",
