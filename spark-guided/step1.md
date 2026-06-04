@@ -1,6 +1,40 @@
-# Step 1 — Inspect the cluster
+# Step 1 — Start the cluster
 
-## Verify the containers are running
+## Pull the Spark image
+
+The image needs to be downloaded before the cluster can start. This takes 1–2 minutes.
+
+```
+docker pull bitnami/spark:3.5
+```{{exec}}
+
+---
+
+## Start the cluster
+
+```
+cd /root/spark-lab && docker-compose up -d
+```{{exec}}
+
+---
+
+## Wait for the master to be ready
+
+```
+until docker logs spark-master 2>&1 | grep -q "Master: Starting Spark master"; do sleep 3; done && echo "Master ready"
+```{{exec}}
+
+---
+
+## Wait for the worker to register
+
+```
+until docker logs spark-worker 2>&1 | grep -q "Successfully registered with master"; do sleep 3; done && echo "Worker registered"
+```{{exec}}
+
+---
+
+## Verify both containers are running
 
 ```
 docker ps
@@ -10,33 +44,27 @@ You should see `spark-master` and `spark-worker` both in `Up` status.
 
 ---
 
-## Check the Docker Compose configuration
+## Copy the data files into the master container
 
 ```
-cat /root/spark-lab/docker-compose.yml
+docker exec spark-master mkdir -p /data
 ```{{exec}}
 
-Notice:
-- `spark-master` exposes port **8080** (Web UI) and **7077** (cluster communication)
-- `spark-worker` sets `SPARK_MASTER_URL=spark://spark-master:7077` to register with the master
-- The worker has **1 GB memory** and **1 core** allocated
+```
+docker cp /root/spark-lab/sales.csv spark-master:/data/sales.csv
+```{{exec}}
+
+```
+docker cp /root/spark-lab/catalog.csv spark-master:/data/catalog.csv
+```{{exec}}
+
+```
+docker cp /root/spark-lab/analysis.py spark-master:/data/analysis.py
+```{{exec}}
 
 ---
 
-## Verify the worker registered with the master
-
-```
-docker logs spark-worker --tail 30
-```{{exec}}
-
-Look for the line:
-`Worker: Successfully registered with master spark://spark-master:7077`
-
-If you don't see it yet, wait 10 seconds and run the command again.
-
----
-
-## Verify files are ready inside the container
+## Verify the files are inside the container
 
 ```
 docker exec spark-master ls /data/

@@ -15,18 +15,13 @@ to observe how jobs are executed across the cluster.
 
 You are a data engineer at a retail company. You have a CSV file of sales orders
 from 2023 and 2024 and a product catalog with supplier and margin information.
-Your tasks: compute revenue aggregations, filter and transform the data,
-join the two datasets, use the cache API, and rewrite a query using Spark SQL.
+Your tasks: start the cluster, compute revenue aggregations, filter and transform
+the data, join the two datasets, use the cache API, and rewrite a query using Spark SQL.
 
 ## What is already prepared
 
-The setup script has:
-- installed Docker Compose
-- created the working directory `/root/spark-lab` with all files
-- pulled the Spark image and started the cluster
-- copied the data files into the master container at `/data/`
-
-**The setup takes about 90 seconds. Wait for the terminal prompt before clicking Start.**
+The setup script has installed Docker Compose and created all files in `/root/spark-lab/`.
+**You will start the cluster yourself in Step 1.**
 
 ---
 

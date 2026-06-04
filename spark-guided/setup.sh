@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Install Docker Compose
 apt-get update -qq
 apt-get install -y -qq docker-compose > /dev/null 2>&1
 
-# Create working directory
 mkdir -p /root/spark-lab
 
-# Create Docker Compose file
 cat > /root/spark-lab/docker-compose.yml << 'COMPOSEEOF'
 version: "3.8"
 services:
@@ -39,7 +36,6 @@ services:
       - spark-master
 COMPOSEEOF
 
-# Create sales dataset
 cat > /root/spark-lab/sales.csv << 'CSVEOF'
 order_id,product,category,region,quantity,unit_price,year
 1001,Laptop,Electronics,North,2,899.99,2023
@@ -64,7 +60,6 @@ order_id,product,category,region,quantity,unit_price,year
 1020,Webcam,Electronics,North,9,89.99,2024
 CSVEOF
 
-# Create product catalog
 cat > /root/spark-lab/catalog.csv << 'CATEOF'
 product,supplier,margin_pct
 Laptop,TechSupply Inc,22
@@ -79,7 +74,6 @@ Bookshelf,FurnitureCo,38
 Filing Cabinet,FurnitureCo,30
 CATEOF
 
-# Create baseline analysis script
 cat > /root/spark-lab/analysis.py << 'PYEOF'
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as _sum, avg, round as _round, count
@@ -118,25 +112,3 @@ df.groupBy("region") \
 
 spark.stop()
 PYEOF
-
-# Pull image first (blocking)
-docker pull bitnami/spark:3.5 > /dev/null 2>&1
-
-# Start the cluster (non-blocking by design — docker-compose returns immediately)
-cd /root/spark-lab
-docker-compose up -d
-
-# Wait until spark-master container is running
-until docker ps | grep -q "spark-master"; do sleep 3; done
-
-# Wait until Spark master process is actually ready (check logs for startup message)
-until docker logs spark-master 2>&1 | grep -q "Master: Starting Spark master"; do sleep 3; done
-
-# Wait until worker has registered
-until docker logs spark-worker 2>&1 | grep -q "Successfully registered with master"; do sleep 3; done
-
-# Copy data files into the container
-docker exec spark-master mkdir -p /data
-docker cp /root/spark-lab/sales.csv spark-master:/data/sales.csv
-docker cp /root/spark-lab/catalog.csv spark-master:/data/catalog.csv
-docker cp /root/spark-lab/analysis.py spark-master:/data/analysis.py
