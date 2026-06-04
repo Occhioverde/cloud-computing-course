@@ -3,7 +3,7 @@
 ## Look at the sales dataset
 
 ```
-cat /root/spark-lab/sales.csv
+cat /root/spark-lab/data/sales.csv
 ```{{exec}}
 
 The file has 20 rows with columns: `order_id`, `product`, `category`, `region`,
@@ -14,7 +14,7 @@ The file has 20 rows with columns: `order_id`, `product`, `category`, `region`,
 ## Look at the product catalog
 
 ```
-cat /root/spark-lab/catalog.csv
+cat /root/spark-lab/data/catalog.csv
 ```{{exec}}
 
 The catalog has one row per product with `supplier` and `margin_pct`.
@@ -25,7 +25,7 @@ You will use this file later for a join.
 ## Read the analysis script
 
 ```
-cat /root/spark-lab/analysis.py
+cat /root/spark-lab/data/analysis.py
 ```{{exec}}
 
 The script:

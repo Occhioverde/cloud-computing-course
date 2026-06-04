@@ -19,7 +19,7 @@ cd /root/spark-lab && docker-compose up -d
 ## Wait for the master to be ready
 
 ```
-until docker logs spark-master 2>&1 | grep -q "MasterWebUI: Bound to"; do sleep 3; done && echo "Master ready"
+until docker logs spark-master 2>&1 | grep -q "Started MasterWebUI"; do sleep 3; done && echo "Master ready"
 ```{{exec}}
 
 ---
@@ -42,27 +42,9 @@ You should see `spark-master` and `spark-worker` both in `Up` status.
 
 ---
 
-## Copy the data files into the master container
+## Verify the data files are accessible inside the container
 
-```
-docker exec spark-master mkdir -p /data
-```{{exec}}
-
-```
-docker cp /root/spark-lab/sales.csv spark-master:/data/sales.csv
-```{{exec}}
-
-```
-docker cp /root/spark-lab/catalog.csv spark-master:/data/catalog.csv
-```{{exec}}
-
-```
-docker cp /root/spark-lab/analysis.py spark-master:/data/analysis.py
-```{{exec}}
-
----
-
-## Verify the files are inside the container
+The `data/` directory is mounted as a volume — no file copying needed.
 
 ```
 docker exec spark-master ls /data/

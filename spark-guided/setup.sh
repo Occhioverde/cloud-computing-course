@@ -3,7 +3,7 @@
 apt-get update -qq
 apt-get install -y -qq docker-compose > /dev/null 2>&1
 
-mkdir -p /root/spark-lab
+mkdir -p /root/spark-lab/data
 
 cat > /root/spark-lab/docker-compose.yml << 'COMPOSEEOF'
 version: "3.8"
@@ -17,6 +17,8 @@ services:
     ports:
       - "8080:8080"
       - "7077:7077"
+    volumes:
+      - /root/spark-lab/data:/data
   spark-worker:
     image: spark:python3
     container_name: spark-worker
@@ -25,11 +27,13 @@ services:
       - SPARK_NO_DAEMONIZE=true
       - SPARK_WORKER_MEMORY=1g
       - SPARK_WORKER_CORES=1
+    volumes:
+      - /root/spark-lab/data:/data
     depends_on:
       - spark-master
 COMPOSEEOF
 
-cat > /root/spark-lab/sales.csv << 'CSVEOF'
+cat > /root/spark-lab/data/sales.csv << 'CSVEOF'
 order_id,product,category,region,quantity,unit_price,year
 1001,Laptop,Electronics,North,2,899.99,2023
 1002,Desk Chair,Furniture,South,5,249.99,2023
@@ -53,7 +57,7 @@ order_id,product,category,region,quantity,unit_price,year
 1020,Webcam,Electronics,North,9,89.99,2024
 CSVEOF
 
-cat > /root/spark-lab/catalog.csv << 'CATEOF'
+cat > /root/spark-lab/data/catalog.csv << 'CATEOF'
 product,supplier,margin_pct
 Laptop,TechSupply Inc,22
 Keyboard,TechSupply Inc,35
@@ -67,7 +71,7 @@ Bookshelf,FurnitureCo,38
 Filing Cabinet,FurnitureCo,30
 CATEOF
 
-cat > /root/spark-lab/analysis.py << 'PYEOF'
+cat > /root/spark-lab/data/analysis.py << 'PYEOF'
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as _sum, avg, round as _round, count
 
