@@ -1,0 +1,63 @@
+{
+  "title": "IoT Temperature and Humidity Controller with ESP32 & MQTT",
+  "description": "Build a complete IoT system: an ESP32 (simulated) publishes sensor data via MQTT, and a Python controller automates an LED based on temperature/humidity thresholds.",
+  "details": {
+    "steps": [
+      {
+        "title": "Wiring and Running the Simulation",
+        "text": "step1.md"
+      },
+      {
+        "title": "ESP32: Wi-Fi and MQTT Connectivity",
+        "text": "step2.md"
+      },
+      {
+        "title": "ESP32: Publishing Sensor Data",
+        "text": "step3.md"
+      },
+      {
+        "title": "ESP32: Receiving Commands (LED Control)",
+        "text": "step4.md"
+      },
+      {
+        "title": "Python Controller: MQTT Client Setup",
+        "text": "step5.md"
+      },
+      {
+        "title": "Python Controller: Automation Logic",
+        "text": "step6.md"
+      },
+      {
+        "title": "Integration and Testing",
+        "text": "step7.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "setup.sh",
+          "target": "/root/",
+          "chmod": "+x"
+        },
+        {
+          "file": "controller.py",
+          "target": "/root/"
+        },
+        {
+          "file": "device.ino",
+          "target": "/root/"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
